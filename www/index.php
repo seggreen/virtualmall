@@ -6,6 +6,6 @@
 //define('DBUSER', 'root');
 //define('DBPASS', 'zobo');
 
-$pdo = new PDO('mysql:host=localhost;dbname=virtualmall', "root", "zobo");
+//$pdo = new PDO('mysql:host=localhost;dbname=bookstore', "root", "zobo");
 ?>
 
