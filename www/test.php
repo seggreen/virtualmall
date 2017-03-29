@@ -19,24 +19,33 @@ define('DBNAME', 'virtualmall');
 #DEFINE MAX FILE SIZE....
 define("MAX_FILE_SIZE", "2097152");
 
+#ALLOW EXTENSION.....
+$text = ["image/jpg", "image/jpeg", "image/png"];
+
 if(array_key_exists('save', $_POST)) {
 	$errors =[];
-
-	#BE SURE A FILE WAS UPLOADED.....
+    //print_r($_FILES); exit();
+	#BE SURE A FILE WAS SELECTED.....
 	if(empty($_FILES['pic']['name'])) {
 		$errors[] = "please choose a file";
     }
-		#CHCK FILE SIZE.....
-		if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
-			$errors[] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE;
-		}
+    
+	#CHCK FILE SIZE.....
+	if($_FILES['pic']['size'] > MAX_FILE_SIZE) {
+		$errors[] = "file size exceeds maximum. maximum: ". MAX_FILE_SIZE;
+	}
 
-		if(empty($errors)) {
-			echo "done";
-		} else {
-			foreach ($errors as $err) {
-				# code...
-				echo $err. '</br>';
+	#CHECK EXTENSION....
+    if(!in_array($_FILES['pic']['type'], $text)) {
+    	$errors[] = "invalid file type";
+    }
+
+	if(empty($errors)) {
+		echo "done";
+	    } else {
+		foreach ($errors as $err) {
+			# code...
+			echo $err. '</br>';
 		}
 	}
 }
