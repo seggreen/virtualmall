@@ -40,6 +40,19 @@ if(array_key_exists('save', $_POST)) {
     	$errors[] = "invalid file type";
     }
 
+    #GENERATE RANDOM NUMBERVTO APPEND.....
+    $rnd = rand(0000000000, 9999999999);
+
+    #STRIP FILENAME FOR SPACES
+    $strip_name = str_replace(" ", "_", $_FILES['pic']['name']);
+
+    $filename = $rnd.$strip_name;
+    $destination = 'uploads/'.$filename;
+
+    if(!move_uploaded_file($_FILES['pic']['tmp_name'], $destination)) {
+    	$errors[] = "file upload failed";
+    }
+
 	if(empty($errors)) {
 		echo "done";
 	    } else {
