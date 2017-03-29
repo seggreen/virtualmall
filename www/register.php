@@ -4,6 +4,25 @@ $page_title = "Register";
  #include...
  include 'includes/header.php';
 
+ if(array_key_exists('register', $_POST)) {
+ 	#cache errors....
+ 	$errors = [];
+
+ 	#VALIDATION.....
+ 	if(empty($_POST['fname'])) {
+ 		$errors[] = "Please enter first name";
+ 	}
+
+ 	if(empty($errors)) {
+ 		//do DB stuff.....
+ 	} else {
+ 		foreach ($errors as $err) {
+ 			# code...
+ 			echo $err;
+ 		}
+ 	}
+ }
+
 ?>
 
 <div class="wrapper">
