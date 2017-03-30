@@ -1,6 +1,9 @@
 <?php
  #title...
 $page_title = "Register";
+
+ #include DB.....
+ include 'includes/db.php';
  #include...
  include 'includes/header.php';
 
@@ -35,6 +38,19 @@ $page_title = "Register";
  		
  	if(empty($errors)) {
  		//do DB stuff.....
+ 		#ELEMINATE UNWANTED SPACES FROM VALUES IN THE POST ARRAY.....
+ 		$clean =array_map('trim', $_POST);
+
+ 		#HASH PASSWPRD ......
+ 		$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
+
+ 		#INSERT DATA.....
+
+ 		$stmt = $conn->prepare("INSERT INTO adnim(fname, lname, email, hash) VALUES(:fn, :ln, :e, :h)");
+
+ 		#BIND PARAMS.....
+ 		$data = [':fn' => $clean['fname'],':ln' => $clean['lname'], ':e' => $clean['email'],':h' => $hash];
+ 		$stmt->execute($data);
  	} 
  }
 
