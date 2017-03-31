@@ -13,7 +13,7 @@
     }
 
     function doesEmailExist($conn, $email) {
-    	result = false;
+    	$result = false;
 
     	$stmt = $conn->prepare("SELECT email FROM adnim WHERE email=:e");
 
