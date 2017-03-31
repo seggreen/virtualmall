@@ -7,7 +7,7 @@
  # FORM VALIDATION......
  if(array_key_exists('login', $_POST)) {
  	#CACHE ERRORS
- 	$errors[];
+ 	$errors = [];
 
  	#VALIDATE LOGIN......
  	if(empty($_POST['email'])) {
