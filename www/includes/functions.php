@@ -18,8 +18,8 @@
     	$stmt = $conn->prepare("SELECT email FROM adnim WHERE email=:e");
 
     	#BIND PARAMS.....
-    	$data = [':e' =>$email['email']];
-    	//$stmt->bindParam(":e", $email);
+    	//$data = [':e' =>$email['email']];
+    	$stmt->bindParam(":e", $email);
     	$stmt->execute();
 
     	#GET NUMBER OF ROLLS RETURNED.......
