@@ -4,6 +4,27 @@
  #include...
  include 'includes/header.php';
 
+ # FORM VALIDATION......
+ if(array_key_exists('login', $_POST)) {
+ 	#CACHE ERRORS
+ 	$errors[];
+
+ 	#VALIDATE LOGIN......
+ 	if(empty($_POST['email'])) {
+ 		$errors['email'] = "Kindly enter email";
+ 	}
+
+ 	#VALIDATE PASSWORD......
+ 	if(empty($_POST['password'])) {
+ 		$errors['password'] = "Kindky enter password";
+ 	}
+
+ 	#VALIDATE ERRORS....
+ 	if(empty($errors)) {
+ 		#Do DB STUFF.......//
+ 	}
+ } 
+
 ?>
 <div class="wrapper">
 		<h1 id="login-label">Admin Login</h1>
