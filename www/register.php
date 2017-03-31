@@ -52,7 +52,7 @@ $page_title = "Register";
 
  		$clean =array_map('trim', $_POST);
 
- 		#REGISTER ADMIN.....
+ 		#DO REGISTER ADMIN FUNCTION.....
  		doAdminRegister($conn, $clean);
 
  		
