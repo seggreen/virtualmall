@@ -25,7 +25,7 @@
     	#GET NUMBER OF ROLLS RETURNED.......
     	$count = $stmt->rowCount();
 
-    	if($count >0 ) {
+    	if($count > 0 ) {
     		$result = true;
     	}
 
