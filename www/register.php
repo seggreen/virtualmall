@@ -2,10 +2,15 @@
  #title...
 $page_title = "Register";
 
- #include DB.....
+ #include DB CONN.....
  include 'includes/db.php';
- #include...
+
+ #include HEARDER...
  include 'includes/header.php';
+
+ #import FUNCTIONS.....
+ include 'includes/functions.php';
+
 
  if(array_key_exists('register', $_POST)) {
  	#cache errors....
@@ -26,6 +31,10 @@ $page_title = "Register";
  		$errors['email'] = "Please enter email";
  	}
 
+ 	if(doesEmailExist($conn, $_POST['email'])) {
+ 		$errors['email'] = "email already exist";
+ 	}
+
  	#VALIDATE PASSWORD.....
  	if(empty($_POST['password'])) {
  		$errors['password'] = "Please enter password";
@@ -38,19 +47,15 @@ $page_title = "Register";
  		
  	if(empty($errors)) {
  		//do DB stuff.....
+
  		#ELEMINATE UNWANTED SPACES FROM VALUES IN THE POST ARRAY.....
+
  		$clean =array_map('trim', $_POST);
 
- 		#HASH PASSWPRD ......
- 		$hash = password_hash($clean['password'], PASSWORD_BCRYPT);
+ 		#REGISTER ADMIN.....
+ 		doAdminRegister($conn, $clean);
 
- 		#INSERT DATA.....
-
- 		$stmt = $conn->prepare("INSERT INTO adnim(fname, lname, email, hash) VALUES(:fn, :ln, :e, :h)");
-
- 		#BIND PARAMS.....
- 		$data = [':fn' => $clean['fname'],':ln' => $clean['lname'], ':e' => $clean['email'],':h' => $hash];
- 		$stmt->execute($data);
+ 		
  	} 
  }
 
