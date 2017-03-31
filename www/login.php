@@ -31,10 +31,12 @@
 		<hr>
 		<form id = "login" method="POST" action="login.php">
 			<div>
+			    <?php if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>';} ?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
 			<div>
+			    <?php if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>';} ?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
 			</div>
