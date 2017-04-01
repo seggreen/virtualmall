@@ -1,4 +1,6 @@
 <?php
+
+    #FUNCTION REGISTER ADMIN......
     function doAdminRegister($conn, $input) {
     	#HASH PASSWORD.....
     	$hash = password_hash($input['password'], PASSWORD_BCRYPT);
@@ -12,6 +14,7 @@
     	$stmt->execute($data);
     }
 
+    #FUNCTION CHECK IF EMAIL EXIST........ 
     function doesEmailExist($conn, $email) {
     	$result = false;
 
@@ -31,3 +34,12 @@
 
     	return $result;
     }
+
+    #FUNCTION DISPLAY ERROR.......
+    function displayError($key, $arr) {
+    	if(key_exists($key, $arr)) {
+    		echo '<span class="err">' .$arr[$key].'</span>';
+    	}
+    }
+
+
