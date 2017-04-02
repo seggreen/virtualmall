@@ -36,9 +36,10 @@
     }
 
     #FUNCTION DISPLAY ERROR.......
-    function displayError($key, $arr) {
-    	if(array_key_exists($key, $arr)) {
-    		echo '<span class="err">' .$arr[$key].'</span>';
+    function displayErrors($key, $arr) {
+    
+     if(isset($key, $arr)){
+    		echo '<span class="err">' .$arr[$key]. '</span>';
     	}
     }
 

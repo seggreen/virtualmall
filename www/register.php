@@ -18,17 +18,17 @@ $page_title = "Register";
 
  	#VALIDATE FIRST NAME.....
  	if(empty($_POST['fname'])) {
- 		$errors['fname'] = "Please enter first name";
+ 		$errors['fname'] = "Kindly enter first name";
  	}
  	
  	#VALIDATE LAST NAME.....
  	if(empty($_POST['lname'])) {
- 		$errors['lname'] = "Please enter last name";
+ 		$errors['lname'] = "Kindly enter last name";
  	}
  	
  	#VALIDATE EMAIL.....
  	if(empty($_POST['email'])) {
- 		$errors['email'] = "Please enter email";
+ 		$errors['email'] = "Kindly enter email";
  	}
 
  	if(doesEmailExist($conn, $_POST['email'])) {
@@ -67,29 +67,30 @@ $page_title = "Register";
 		<hr>
 		<form id="register"  action ="register.php" method ="POST">
 			<div>
-			    <?php displayError('fname', $errors)?>
+			    <?php if(isset($errors['fname'])) displayErrors('fname', $errors);?>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
+
 			<div>
-			    <?php if(isset($errors['lname'])) { echo '<span class="err">'. $errors['lname']. '</span>';} ?>
+			    <?php if(isset($errors['lname'])) displayErrors('lname', $errors);?>
 				<label>last name:</label>	
 				<input type="text" name="lname" placeholder="last name">
 			</div>
 
 			<div>
-			    <?php if(isset($errors['email'])) { echo '<span class="err">'. $errors['email']. '</span>';} ?>
+			    <?php if(isset($errors['email'])) displayErrors('email', $errors);?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
 			<div>
-			    <?php if(isset($errors['password'])) { echo '<span class="err">'. $errors['password']. '</span>';} ?>
+			    <?php if(isset($errors['password'])) displayErrors('password', $errors);?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
 			</div>
  
 			<div>
-			    <?php if(isset($errors['pword'])) { echo '<span class="err">'. $errors['pword']. '</span>';} ?>
+			    <?php if(isset($errors['password'])) displayErrors('password', $errors);?>
 				<label>confirm password:</label>	
 				<input type="password" name="pword" placeholder="password">
 			</div>
