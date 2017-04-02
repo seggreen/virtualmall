@@ -55,7 +55,8 @@ $page_title = "Register";
  		#DO REGISTER ADMIN FUNCTION.....
  		doAdminRegister($conn, $clean);
 
- 		
+ 		#REDIRECT TO LOGIN.......
+ 		header('Location:Login.php');
  	} 
  }
 
