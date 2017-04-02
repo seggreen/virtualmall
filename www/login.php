@@ -4,6 +4,9 @@
  #TITLE...
  $page_title = "Login";
 
+ #INCLUDE DB......
+ include 'includes/db.php';
+
  #INCLUDE HEADER...
  include 'includes/header.php';
 
@@ -25,9 +28,8 @@
  		$errors['password'] = "Kindly enter password";
  	}
 
- 	#LOG ADMIN IN......
- 
- 	$chk = authenticateAdmin($con, $_POST['email'], $_POST['password']);
+ 	#LOG ADMIN IN...... 
+ 	$chk = authenticateAdmin($conn, $_POST['email'], $_POST['password']);
 
  	if($chk[0] == false) {
 
