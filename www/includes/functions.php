@@ -16,6 +16,7 @@
 
     #FUNCTION CHECK IF EMAIL EXIST........ 
     function doesEmailExist($conn, $email) {
+    	#SET FLAG RESULT TO FALSE.....
     	$result = false;
 
     	$stmt = $conn->prepare("SELECT email FROM adnim WHERE email=:e");
@@ -43,4 +44,7 @@
     	}
     }
 
+    #FUNCTION AUTHENTICATE ADMIN......
+    function verifyAdmin($email, $pass) {
 
+    }
