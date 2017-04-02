@@ -1,6 +1,6 @@
 <?php
-
  session_start();
+
  #TITLE...
  $page_title = "Login";
 
@@ -8,7 +8,7 @@
  include 'includes/header.php';
 
  #INCLUDE fUNCTION......
- //include 'includes/functions.php'
+ include 'includes/functions.php';
 
  # FORM VALIDATION......
  if(array_key_exists('login', $_POST)) {
@@ -22,13 +22,31 @@
 
  	#VALIDATE PASSWORD......
  	if(empty($_POST['password'])) {
- 		$errors['password'] = "Kindky enter password";
+ 		$errors['password'] = "Kindly enter password";
+ 	}
+
+ 	#LOG ADMIN IN......
+ 
+ 	$chk = authenticateAdmin($con, $_POST['email'], $_POST['password']);
+
+ 	if($chk[0] == false) {
+
+ 		$errors['email'] = "Either email or password is incorrect";
  	}
 
  	#VALIDATE ERRORS....
  	if(empty($errors)) {
- 		#Do DB STUFF.......//
+
+ 		$data = $alpha[1];
+
+ 		$_SESSION['admin_id'] = $data['admin_id'];
+
+ 		#REDIRECT....
+ 		header('Location:addproduct.php');
+
+ 
  	}
+
  } 
 
 ?>

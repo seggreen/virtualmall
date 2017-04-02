@@ -1,5 +1,14 @@
 <?php
 
+     #FUNCTION DISPLAY ERROR.......
+    function displayErrors($key, $arr) {
+    
+     if(isset($key, $arr)){
+    		echo '<span class="err">' .$arr[$key]. '</span>';
+    	}
+    }
+
+
     #FUNCTION REGISTER ADMIN......
     function doAdminRegister($conn, $input) {
     	#HASH PASSWORD.....
@@ -13,6 +22,32 @@
     	
     	$stmt->execute($data);
     }
+
+
+    #FUNCTION AUTHENTICATE ADMIN......
+    function authenticateAdmin($conn, $email, $pass) {
+        #SET FLAG CONFIRM TO TRUE........
+        $confirm = true;
+
+        $stmt = $conn->prepare("SELECT adnim_id, email, hash FROM adnim WHERE email=:e");
+        $stmt->execute([":e" => $e]);
+
+        #FETCH ROW RESULT....
+
+        $rows = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->rowCount();
+
+        #CHECK FOR MATCH......
+        if($result <= 0) {
+        	$confirm = false;
+        }
+
+          if(!password_verify($P, $rows['hash'])) {
+               $confirm = false;
+        }
+
+        return [$confirm, $rows];
+}
 
     #FUNCTION CHECK IF EMAIL EXIST........ 
     function doesEmailExist($conn, $email) {
@@ -36,15 +71,4 @@
     	return $result;
     }
 
-    #FUNCTION DISPLAY ERROR.......
-    function displayErrors($key, $arr) {
     
-     if(isset($key, $arr)){
-    		echo '<span class="err">' .$arr[$key]. '</span>';
-    	}
-    }
-
-    #FUNCTION AUTHENTICATE ADMIN......
-    function verifyAdmin($email, $pass) {
-
-    }
