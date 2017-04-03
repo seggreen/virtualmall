@@ -50,7 +50,7 @@
 }
 
     #FUNCTION CHECK IF EMAIL EXIST........ 
-    function doesEmailExist($conn, $email) {
+    function doesEmailExist($conn, $e) {
     	#SET FLAG RESULT TO FALSE.....
     	$result = false;
 
