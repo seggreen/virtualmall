@@ -33,7 +33,7 @@ $page_title = "Register";
 
  	if(doesEmailExist($conn, $_POST['email'])) {
 
- 		$errors['email'] = "email already exist";
+ 		$errors['email'] = "email already exist,";
 
  	} else {
  		
