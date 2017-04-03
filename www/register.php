@@ -31,10 +31,11 @@ $page_title = "Register";
  		$errors['email'] = "Kindly enter email";
  	}
 
- 	if(doesEmailExist($conn, $_POST['email'])) {
-
+ 	$chk = doesEmailExist($conn, $email) 
+    
+    if($chk) {
  		$errors['email'] = "email already exist,";
-
+    
  	} else {
  		
  		$errors['email'] = "kindly enter a valid email";
