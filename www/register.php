@@ -31,7 +31,7 @@ $page_title = "Register";
  		$errors['email'] = "Kindly enter email";
  	}
 
- 	$chk = doesEmailExist($conn, $email) 
+ 	$chk = doesEmailExist($conn, $email); 
     
     if($chk) {
  		$errors['email'] = "email already exist,";
