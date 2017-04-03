@@ -25,7 +25,7 @@
 
 
     #FUNCTION AUTHENTICATE ADMIN......
-    function authenticateAdmin($conn, $email, $pass) {
+    function authenticateAdmin($conn, $e, $p) {
         #SET FLAG CONFIRM TO TRUE........
         $confirm = true;
 
@@ -42,7 +42,7 @@
         	$confirm = false;
         }
 
-          if(!password_verify($P, $rows['hash'])) {
+          if(!password_verify($p, $rows['hash'])) {
                $confirm = false;
         }
 
