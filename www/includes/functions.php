@@ -68,4 +68,27 @@
     	return $result;
     }
 
+    #FUNCTION FILE UPLOAD.....
+    function doFileUpload($file, $upload) {
+    	#SET FLAG TO FALSE......
+    	$result = flase;
+
+    	#GENERATE RAND NUMBER......
+    	$rnd = $rand(000000, 999999);
+
+    	#STRIP FILE NAME FOR SPACE......
+    	$strip_name = str_replace("", "_", $file['pic']['name']);
+
+    	$filename = $rnd.$trip_name;
+    	$destination = $upload.$filename;
+
+    	$fly = move_uploaded_file($file['pic']['tmp_name'], $destination);
+
+    	if($fly) {
+    		$result = true;
+    	}
+
+    	return [$result, $destination];
+    }
+
     

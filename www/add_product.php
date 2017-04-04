@@ -3,7 +3,7 @@
 session_start();
 
 #TITLE.....
-$title = "";
+$title = "Add Product";
 
 #INCLUDE DB......
 include 'includes/db.php';

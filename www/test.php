@@ -40,6 +40,12 @@ if(array_key_exists('save', $_POST)) {
     	$errors[] = "invalid file type";
     }
 
+
+    //$errors = doFileUpload($_FILES['pic']);
+
+
+
+
     #GENERATE RANDOM NUMBERVTO APPEND.....
     $rnd = rand(0000000000, 9999999999);
 
