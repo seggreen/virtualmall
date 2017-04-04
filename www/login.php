@@ -44,7 +44,7 @@
  		$_SESSION['admin_id'] = $data['admin_id'];
 
  		#REDIRECT....
- 		header('Location:addproduct.php');
+ 		header('Location:add_product.php');
 
  
  	}
