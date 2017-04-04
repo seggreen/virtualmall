@@ -91,4 +91,44 @@
     	return [$result, $destination];
     }
 
+    #ADD CATEGORY.......
+    function addCategory($conn, $catname) {
+
+    	#PREPARE STATEMENT......
+    	$stmt = $conn->prepare("INSERT INTO categories (category_name)VALUES(:cat)");
+    	$stmt->execute([':cat' => $catname]);
+    }
+
+    #BIND CATEGORY TO  DROPDOWN......
+    function retriveCategory($conn) {
+
+    	#APPEND TEMPLATE......
+    	$temp = "";
+
+    	$stmt = $conn->perpare("SELECT * FROM categories");
+    	$stmt->execute();
+
+    	while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
+
+    		$temp .= '<option value="'.$row[0]. '">'.$row[1]. '</option>';
+    		# code...
+    	}
+
+    	return $temp;
+    }
+
+    #INSERT INTO BOOKS....
+    function insertBook($conn, $data) {
+
+        #PREPARE STATEMENT......
+    	$stmt = $conn->prepare("INSERT INTO book (title, author, category_id, price, image_loc, description, year_of_publication, isbn)");
+    }
+
+    extract($data);
+
+    #BIND PARAMS......
+    $val = [':titl'=>titl, ':aut'=>aut, ':cat'=>cat, ':prc'=>prc, ':img_loc'=>img_loc, ':desc'=>desc, ':yop'=>yop, ':isbn'=>];
+
+    $stmt->execute($val);
+
     
