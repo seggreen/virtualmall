@@ -27,9 +27,9 @@
     #FUNCTION AUTHENTICATE ADMIN......
     function authenticateAdmin($conn, $e, $p) {
         #SET FLAG CONFIRM TO TRUE........
-        $confirm = true;
+        $confirm = false;
 
-        $stmt = $conn->prepare("SELECT adnim_id, email, hash FROM adnim WHERE email=:e");
+        $stmt = $conn->prepare("SELECT admin_id, email, hash FROM adnim WHERE email=:e");
         $stmt->execute([":e" => $e]);
 
         #FETCH ROW RESULT....
@@ -38,19 +38,16 @@
         $result = $stmt->rowCount();
 
         #CHECK FOR MATCH......
-        if($result <= 0) {
-        	$confirm = false;
-        }
 
-          if(!password_verify($p, $rows['hash'])) {
-               $confirm = false;
+        if($result > 0 && password_verify($p, $rows['hash'])) {
+        	$confirm = true;
         }
 
         return [$confirm, $rows];
 }
 
     #FUNCTION CHECK IF EMAIL EXIST........ 
-    function doesEmailExist($conn, $e) {
+    function doesEmailExist($conn, $email) {
     	#SET FLAG RESULT TO FALSE.....
     	$result = false;
 

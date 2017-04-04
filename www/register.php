@@ -30,15 +30,12 @@ $page_title = "Register";
  	if(empty($_POST['email'])) {
  		$errors['email'] = "Kindly enter email";
  	}
-
- 	$chk = doesEmailExist($conn, $email); 
+     
+    #CHECK IF EMAIL EXIST....... 
+ 	$chk = doesEmailExist($conn, $_POST['email']);
     
     if($chk) {
- 		$errors['email'] = "email already exist,";
-    
- 	} else {
- 		
- 		$errors['email'] = "kindly enter a valid email";
+ 		$errors['email'] = "email already exist";
  	} 
 
  	#VALIDATE PASSWORD.....
