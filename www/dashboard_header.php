@@ -11,8 +11,8 @@
 			<h1>T<span>SSB</span></h1>
 			<nav>
 				<ul class="clearfix">
-					<li><a href="add_category.php" class="selected">add category</a></li>
-					<li><a href="add_product.php">add product</a></li>
+					<li><a href="add_product.php" class="selected">add product</a></li>
+					<li><a href="add_category.php">add category</a></li>
 					<li><a href="#">view posts</a></li>
 					<li><a href="#">view posts</a></li>
 					<li><a href="#">logout</a></li>

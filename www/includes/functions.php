@@ -121,14 +121,17 @@
     function insertBook($conn, $data) {
 
         #PREPARE STATEMENT......
-    	$stmt = $conn->prepare("INSERT INTO book (title, author, category_id, price, image_loc, description, year_of_publication, isbn)");
+    	$stmt = $conn->prepare("INSERT INTO book (title, author, category_id, price, image_loc, description, year_of_publication, isbn)VALUES(:titl, :aut, :cat, :prc, :img_loc, :des, :yop, isbn)");
+
+       extract($data);
+
+      #BIND PARAMS......
+      $val = [':titl'=>$titl, ':aut'=>$aut, ':cat'=>$cat, ':prc'=>$prc, ':img_loc'=>$img_loc, ':des'=>$des, ':yop'=>$yop, ':isbn'=>$isbn];
+
+      $stmt->execute($val);
+      
     }
 
-    extract($data);
-
-    #BIND PARAMS......
-    $val = [':titl'=>titl, ':aut'=>aut, ':cat'=>cat, ':prc'=>prc, ':img_loc'=>img_loc, ':desc'=>desc, ':yop'=>yop, ':isbn'=>];
-
-    $stmt->execute($val);
+      
 
     

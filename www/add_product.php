@@ -3,7 +3,7 @@
 session_start();
 
 #TITLE.....
-$title = "Add Product";
+$title = "add Products";
 
 #INCLUDE DB......
 include 'includes/db.php';
@@ -24,7 +24,7 @@ define("MAX_FILE_SIZE", "2097152");
 $text = ["image/jpeg", "image/jpg", "image/png"];
 
 #VALIDATION.......
-if(array_key_exists("addBook", $_POST)) {
+if(array_key_exists("addProduct", $_POST)) {
 
 	#VALIDATE PRODUCT NAME FIELD......
 	if(empty($_POST['pname'])) {
@@ -68,7 +68,7 @@ if(array_key_exists("addBook", $_POST)) {
 		if($oya[0]) {
            
            $filter = array_map('trim', $_POST);
-           $filter = ['image_place'] = $oya[1];
+           $filter ['image_place'] = $oya[1];
 
            insertbook($conn, $filter);
 
@@ -83,50 +83,56 @@ if(array_key_exists("addBook", $_POST)) {
 
 
 ?>
-<div class="wrapper">
+
+      <div class="wrapper">
 		<div id="stream">
 			<h1 id="register-label">Add Product</h1>
 			<hr>
 
 			<form id="register" method="POST" enctype="multipart/form-data">
 			<div>
-			    <?php display_errors('pname', $errors); ?>
+			    <?php if(isset($errors['pname']))displayErrors('pname', $errors);  ?>
 				<label>Name</label>
-				<input type="text" name="pname" placeholder="product name">
+				<input type="text" name="pname" placeholder="product name" />
 			</div>
 			<div>
-			    <?php display_errors('pauth', $errors); ?>
+			    <?php if(isset($errors['pauth'])) displayErrors('pauth', $errors); ?>
 				<label>Author</label>
-				<input type="text" name="pauth" placeholder="product author">
+				<input type="text" name="pauth" placeholder="product author" />
 			</div>
 			<div>
-			    <?php display_errors('cat', $errors); ?>
+			    <?phpif(isset($errors['cat'])) displayErrors('cat', $errors); ?>
 				<label>select category</label>
 				<select name="cat">
-					<?php echo retrieveCategory($dbcon); ?>
+					<?php echo retrieveCategory($conn); ?>
 				</select>
 
 			</div>
 			<div>
-			    <?php display_errors('desc', $errors); ?>
+			    <?php if(isset($errors['desc'])) displayErrors('desc', $errors);?>
 				<label>Description:</label>
 				<textarea placeholder="content" name="desc" class="post-box"></textarea>
 			</div>
 			<div>
-			    <?php display_errors('price', $errors); ?>
+			    <?php if(isset($errors['price'])) displayErrors('price', $errors); ?>
 				<label>Price</label>
-				<input type="text" name="price" placeholder="price">
+				<input type="text" name="price" placeholder="price" />
 			</div>
 
 			<div>
-			    <?php display_errors('', $errors); ?>
+			    <?php   if(isset($errors['']))displayErrors('', $errors); ?>
 				<label>image</label>
-				<input type="file" name="pic">
+				<input type="file" name="pic" />
 			</div>
 
-			<input type="submit" name="addBroduct" value="add book">
+			<input type="submit" name="addProduct" value="add product" />
 
 			</form>
 		</div>
 	</div>
 
+
+
+#IMPORT FOOTER.....
+
+<?php include 'includes/footer.php'; ?>
